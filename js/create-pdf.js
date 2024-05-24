@@ -1,32 +1,33 @@
-// import { jsPDF } from 'jspdf'
 import { OPTIONS } from './options.js'
 
 const jsPDF = window.jspdf.default
 
 const createPdf = (canvas) => {
-  const pdf = new jsPDF({ format: 'a3' })
+	const borderMM = 10;
 
-  // Add a background color to the pdf
-  pdf.setFillColor(OPTIONS.color1.getHexString())
-  pdf.rect(0, 0, 9999, 9999, 'F')
+	const pdf = new jsPDF({ format: OPTIONS.format })
 
-  // // Save the canvas as an image
-  const image = canvas.toDataURL('image/jpeg', 1.0)
+	// Add a background color to the pdf
+	pdf.setFillColor("#ff0000")
+	pdf.rect(0, 0, 9999, 9999, 'F')
 
-  // // Add image to the pdf
-  pdf.addImage(
-    image,
-    'JPEG',
-    OPTIONS.borderMM,
-    OPTIONS.borderMM,
-    OPTIONS.width - OPTIONS.borderMM * 2,
-    OPTIONS.height - OPTIONS.borderMM * 2,
-    '',
-    'NONE',
-    0
-  )
+	// Save the canvas as an image
+	const image = canvas.toDataURL('image/jpeg', 1.0)
 
-  pdf.save('riso-print')
+	// Add image to the pdf
+	pdf.addImage(
+		image,
+		'JPEG',
+		borderMM,
+		borderMM,
+		OPTIONS.width - borderMM * 2,
+		OPTIONS.height - borderMM * 2,
+		'',
+		'NONE',
+		0
+	)
+
+	pdf.save('riso-print')
 }
 
 export default createPdf
