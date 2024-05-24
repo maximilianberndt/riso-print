@@ -17,10 +17,10 @@ const createPdf = (canvas) => {
   pdf.addImage(
     image,
     'JPEG',
-    0,
-    0,
-    OPTIONS.width,
-    OPTIONS.height,
+    OPTIONS.borderMM,
+    OPTIONS.borderMM,
+    OPTIONS.width - OPTIONS.borderMM * 2,
+    OPTIONS.height - OPTIONS.borderMM * 2,
     '',
     'NONE',
     0
