@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 
 export const OPTIONS = {
-	format: "a3",
 	width: 297,
 	height: 420,
 	color1: new THREE.Color('#ff0000'),

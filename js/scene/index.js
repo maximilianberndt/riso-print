@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { OPTIONS } from './options.js'
+import { OPTIONS } from '../options.js'
 
 export const canvas = document.querySelector('canvas')
 
@@ -19,11 +19,11 @@ export const renderer = new THREE.WebGLRenderer({
 
 renderer.setClearColor(OPTIONS.color2)
 
-const resize = () => {
+const resize = (options) => {
 	const wrapper = document.querySelector("#canvas-wrapper")
 	const { width, height } = wrapper.getBoundingClientRect();
 
-	const paperAspectRatio = OPTIONS.width / OPTIONS.height
+	const paperAspectRatio = options.width / options.height
 	const scaledWidth = width * paperAspectRatio
 
 	camera.aspect = scaledWidth / height
@@ -32,4 +32,4 @@ const resize = () => {
 	renderer.setSize(scaledWidth, height)
 }
 
-resize()
+resize(OPTIONS)
