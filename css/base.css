@@ -208,3 +208,7 @@ a:focus-visible {
 	justify-content: center;
 	align-items: center;
 }
+
+canvas{
+	border: 1px solid black;
+}

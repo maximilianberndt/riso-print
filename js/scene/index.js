@@ -4,9 +4,9 @@ import { OPTIONS } from '../options.js'
 export const canvas = document.querySelector('canvas')
 
 export const scene = new THREE.Scene({ devicePixelRatio: 300 })
-export const camera = new THREE.PerspectiveCamera(
-	75,
-	OPTIONS.width / OPTIONS.height
+export const camera = new THREE.OrthographicCamera(
+	// 75,
+	// OPTIONS.width / OPTIONS.height
 )
 camera.position.z = 5
 
@@ -26,7 +26,7 @@ const resize = (options) => {
 	const paperAspectRatio = options.width / options.height
 	const scaledWidth = width * paperAspectRatio
 
-	camera.aspect = scaledWidth / height
+	// camera.aspect = scaledWidth / height
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(scaledWidth, height)
