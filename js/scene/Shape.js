@@ -6,6 +6,7 @@ const material = new THREE.MeshPhysicalMaterial({ color: 0xffffff })
 
 class Shape {
   scene
+  controlEnabled = false
 
   constructor({
     position = new THREE.Vector3(),
@@ -31,23 +32,23 @@ class Shape {
     )
 
     this.scene.add(this.mesh)
-    this.enableControls()
-  }
-
-  enableControls() {
-    this.control.attach(this.mesh)
     this.scene.add(this.control)
   }
 
-  disableControls() {
-    this.control.destroy()
-    this.scale.remove(this.control)
+  enableControls() {
+    this.controlEnabled = true
+    this.control.attach(this.mesh)
   }
 
-  update() {}
+  disableControls() {
+    this.controlEnabled = false
+    this.control.detach()
+  }
 
   destroy() {
     this.scene.remove(this.mesh)
+    this.scene.remove(this.control)
+    this.control.destroy()
   }
 }
 

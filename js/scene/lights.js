@@ -1,32 +1,33 @@
 import * as THREE from 'three'
 import gui from '../gui.js'
+import { OPTIONS } from '../options.js'
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
-directionalLight.position.set(3.2, 2.8, 0)
-directionalLight.rotation.set(0, 0, -0.5)
+const ambientLight = new THREE.AmbientLight(OPTIONS.color1)
 
-const pointLight = new THREE.PointLight(0xff0000, 1, 100)
-pointLight.position.set(3.2, 2.8, 0)
+const pointLight = new THREE.PointLight(0xff0000, 1, 10)
+pointLight.position.set(1.2, 1.8, 1.5)
 
 const helper = new THREE.PointLightHelper(pointLight, 1, 0xff0000)
 helper.visible = false
 
-const ambientLight = new THREE.AmbientLight(0x404040) // soft white light
-
-const folder = gui.addFolder({ title: 'Directional Light' })
-folder.addBinding(pointLight, 'position')
-folder.addBinding(pointLight, 'rotation')
-folder.addBinding(pointLight, 'color', {
-  color: { type: 'float' },
-  picker: 'inline',
-  expanded: true,
+const pointLightFolder = gui.addFolder({ title: 'Point Light' })
+pointLightFolder.addBinding(pointLight, 'position')
+pointLightFolder.addBinding(pointLight, 'rotation')
+pointLightFolder.addBinding(pointLight, 'intensity', {
+  min: 0,
+  max: 5,
 })
-folder.addBinding(helper, 'visible', { label: 'Helper' })
+pointLightFolder.addBinding(helper, 'visible', { label: 'Helper' })
+
+const ambientLightFolder = gui.addFolder({ title: 'Ambient Light' })
+ambientLightFolder.addBinding(ambientLight, 'intensity', {
+  min: 0,
+  max: 5,
+})
 
 const createLights = (scene) => {
   scene.add(helper)
   scene.add(pointLight)
-  //   scene.add(directionalLight)
 
   scene.add(ambientLight)
 }
