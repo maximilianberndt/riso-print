@@ -11,20 +11,24 @@ const shapes = [...Array(1)].map(
   () => new Shape({ scene, camera, renderer, orbit: controls })
 )
 
-const folder = gui.addFolder({ title: 'General' })
-folder
-  .addButton({ title: 'Create Pdf' })
-  .on('click', () => createPdf(canvas, OPTIONS))
-folder.addButton({ title: 'Add Sphere' }).on('click', () => {
+gui.addButton({ title: 'Add Sphere', index: 0 }).on('click', () => {
+  shapes.forEach((s) => s.disableControls())
+
   const shape = new Shape({
     scene,
     camera,
     renderer,
     orbit: controls,
   })
+
   shapes.push(shape)
   shape.enableControls()
 })
+
+const folder = gui.addFolder({ title: 'General' })
+folder
+  .addButton({ title: 'Create Pdf' })
+  .on('click', () => createPdf(canvas, OPTIONS))
 
 createLights(scene)
 
@@ -33,8 +37,6 @@ canvas.addEventListener('click', () => getObject(shapes))
 const tick = () => {
   renderer.render(scene, camera)
   controls.update()
-
-  shapes.forEach((shape) => shape.update())
 
   requestAnimationFrame(tick)
 }

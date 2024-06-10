@@ -9,6 +9,9 @@ export const camera = new THREE.PerspectiveCamera(
   OPTIONS.width / OPTIONS.height
 )
 camera.position.z = 5
+camera.position.y = 1
+camera.position.x = 1
+camera.lookAt(new THREE.Vector3())
 
 export const renderer = new THREE.WebGLRenderer({
   canvas,
