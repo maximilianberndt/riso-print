@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import gui from '../gui.js'
 import { OPTIONS } from '../options.js'
 
-const ambientLight = new THREE.AmbientLight(OPTIONS.color1, 5)
+const ambientLight = new THREE.AmbientLight(OPTIONS.color1, 3.2)
 
 const pointLight = new THREE.PointLight(0xff0000, 8, 10)
 pointLight.position.set(1.2, 1.8, 1.5)

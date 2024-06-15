@@ -34,7 +34,7 @@ const resize = (options) => {
   camera.updateProjectionMatrix()
 
   renderer.setSize(scaledWidth, height)
-  composer.setSize(scaledWidth, height)
+  composer.setSize(scaledWidth * 2, height * 2)
 }
 
-resize(OPTIONS)
+setTimeout(() => resize(OPTIONS), 0)

@@ -42,7 +42,7 @@ class Shape {
       this.control.attach(this.mesh)
 
       this.destroyButton = gui
-        .addButton({ title: 'delte', index: 1 })
+        .addButton({ title: 'delete', index: 1 })
         .on('click', () => {
           this.destroy()
         })

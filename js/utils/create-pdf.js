@@ -1,6 +1,6 @@
 const jsPDF = window.jspdf.default
 
-const createPage = (name, canvas, options, image) =>
+const createPage = (name, canvas, options) =>
   new Promise((accept) => {
     const {
       borderMM = 10,
@@ -16,7 +16,7 @@ const createPage = (name, canvas, options, image) =>
     pdf.rect(0, 0, 9999, 9999, 'F')
 
     // Save the canvas as an image
-    // const image = canvas.toDataURL('image/jpeg', 1.0)
+    const image = canvas.toDataURL('image/jpeg', 1.0)
 
     // Add image to the pdf
     const imageWidth = width - borderMM * 2
@@ -41,8 +41,8 @@ const createPage = (name, canvas, options, image) =>
     }, 100)
   })
 
-const createPdf = async (canvas, options = {}, image) => {
-  await createPage('page-1', canvas, options, image)
+const createPdf = async (canvas, options = {}) => {
+  await createPage('page-1', canvas, options)
   // await createPage('page-2', canvas, options)
 }
 
