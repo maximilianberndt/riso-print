@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OPTIONS } from '../options.js'
+import { composer } from '../postProcessing/composer.js'
 
 export const canvas = document.querySelector('canvas')
 
@@ -33,6 +34,7 @@ const resize = (options) => {
   camera.updateProjectionMatrix()
 
   renderer.setSize(scaledWidth, height)
+  composer.setSize(scaledWidth, height)
 }
 
 resize(OPTIONS)
