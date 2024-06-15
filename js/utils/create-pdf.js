@@ -1,10 +1,8 @@
 import { wait } from '../utils/wait.js'
 const jsPDF = window.jspdf.default
 
-const createPage = (name, canvas, pass, options) =>
+const createPage = (name, canvas, options) =>
   new Promise(async (accept) => {
-    pass.enabled = true
-
     const {
       borderMM = 10,
       format = 'a3',
@@ -50,11 +48,15 @@ const createPdf = async (canvas, composer, options = {}) => {
   const redPass = composer.passes[1]
   const bluePass = composer.passes[2]
 
+  // Show just red color
+  redPass.enabled = true
   bluePass.enabled = false
-  await createPage('page-1', canvas, redPass, options)
+  await createPage('color-1', canvas, options)
 
+  // Show just blue color
   redPass.enabled = false
-  await createPage('page-2', canvas, bluePass, options)
+  bluePass.enabled = true
+  await createPage('color-2', canvas, options)
 
   bluePass.enabled = false
 }

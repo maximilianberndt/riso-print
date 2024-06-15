@@ -30,7 +30,7 @@ const resize = (options) => {
   const paperAspectRatio = options.width / options.height
   const scaledWidth = width * paperAspectRatio
 
-  // camera.aspect = scaledWidth / height
+  camera.aspect = scaledWidth / height
   camera.updateProjectionMatrix()
 
   renderer.setSize(scaledWidth, height)
