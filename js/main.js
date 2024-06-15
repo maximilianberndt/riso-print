@@ -10,9 +10,9 @@ import createPdf from './utils/create-pdf.js'
 
 createLights(scene)
 
-const shapes = [...Array(1)].map(
-  () => new Shape({ scene, camera, renderer, orbit: controls })
-)
+const shapes = [
+  new Shape({ scene, camera, renderer, orbit: controls }),
+]
 
 gui.addButton({ title: 'Add Sphere', index: 0 }).on('click', () => {
   shapes.forEach((s) => s.disableControls())
@@ -30,7 +30,7 @@ gui.addButton({ title: 'Add Sphere', index: 0 }).on('click', () => {
 
 const folder = gui.addFolder({ title: 'General' })
 folder.addButton({ title: 'Create Pdf' }).on('click', () => {
-  createPdf(canvas, OPTIONS)
+  createPdf(canvas, composer, OPTIONS)
 })
 
 canvas.addEventListener('click', () => getObject(shapes))
