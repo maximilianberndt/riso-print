@@ -6,7 +6,7 @@ import { camera, canvas, renderer, scene } from './scene/index.js'
 import createLights from './scene/lights.js'
 import { controls } from './scene/orbitControls.js'
 import { getObject } from './scene/raycaster.js'
-import createPdf from './utils/create-pdf.js'
+import createPdf from './utils/createPdf.js'
 
 createLights(scene)
 

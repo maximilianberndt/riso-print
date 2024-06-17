@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 import { OPTIONS } from '../options.js'
-import { composer } from '../postProcessing/composer.js'
+import { composer, smaaPass } from '../postProcessing/composer.js'
+import { fitCanvasToWrapper } from '../utils/fitCanvasToWrapper.js'
 
+const canvasWrapper = document.querySelector('#canvas-wrapper')
 export const canvas = document.querySelector('canvas')
 
 export const scene = new THREE.Scene({ devicePixelRatio: 300 })
@@ -23,18 +25,15 @@ export const renderer = new THREE.WebGLRenderer({
 
 renderer.setClearColor(OPTIONS.color1)
 
-const resize = (options) => {
-  const wrapper = document.querySelector('#canvas-wrapper')
-  const { width, height } = wrapper.getBoundingClientRect()
+const resize = () => {
+  const { width, height } = fitCanvasToWrapper(canvasWrapper)
 
-  const paperAspectRatio = options.width / options.height
-  const scaledWidth = width * paperAspectRatio
-
-  camera.aspect = scaledWidth / height
+  camera.aspect = width / height
   camera.updateProjectionMatrix()
 
-  renderer.setSize(scaledWidth, height)
-  composer.setSize(scaledWidth * 2, height * 2)
+  renderer.setSize(width, height)
+  smaaPass.setSize(width, height)
+  composer.setSize(width * 4, height * 4)
 }
 
-setTimeout(() => resize(OPTIONS), 0)
+setTimeout(resize, 0)
