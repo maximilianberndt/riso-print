@@ -1,14 +1,15 @@
+import { OPTIONS } from '../options.js'
 import { wait } from './wait.js'
 const jsPDF = window.jspdf.default
 
-const createPage = (name, canvas, options) =>
+const createPage = (name, canvas) =>
   new Promise(async (accept) => {
     const {
       borderMM = 10,
       format = 'a3',
       width = 297,
       height = 420,
-    } = options
+    } = OPTIONS
 
     const pdf = new jsPDF({ format })
 
@@ -26,12 +27,14 @@ const createPage = (name, canvas, options) =>
     // Add image to the pdf
     const imageWidth = width - borderMM * 2
     const imageHeight = (imageWidth / width) * height
+    const x = borderMM
+    const y = (height - imageHeight) * 0.5
 
     pdf.addImage(
       image,
       'JPEG',
-      borderMM,
-      (height - imageHeight) * 0.5,
+      x,
+      y,
       imageWidth,
       imageHeight,
       '',
@@ -44,14 +47,14 @@ const createPage = (name, canvas, options) =>
     accept()
   })
 
-const createPdf = async (canvas, composer, options = {}) => {
+const createPdf = async (canvas, composer = {}) => {
   const redPass = composer.passes[1]
   const bluePass = composer.passes[2]
 
   // Show just red color
   redPass.enabled = true
   bluePass.enabled = false
-  await createPage('color-1', canvas, options)
+  await createPage('color-1', canvas)
 
   // // Show just blue color
   // redPass.enabled = false

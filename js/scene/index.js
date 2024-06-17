@@ -6,7 +6,7 @@ import { fitCanvasToWrapper } from '../utils/fitCanvasToWrapper.js'
 const canvasWrapper = document.querySelector('#canvas-wrapper')
 export const canvas = document.querySelector('canvas')
 
-export const scene = new THREE.Scene({ devicePixelRatio: 300 })
+export const scene = new THREE.Scene()
 export const camera = new THREE.PerspectiveCamera(
   75,
   OPTIONS.width / OPTIONS.height
@@ -31,6 +31,7 @@ const resize = () => {
   camera.aspect = width / height
   camera.updateProjectionMatrix()
 
+  renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(width, height)
   smaaPass.setSize(width, height)
   composer.setSize(width * 4, height * 4)

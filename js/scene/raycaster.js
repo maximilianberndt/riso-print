@@ -4,14 +4,10 @@ import { camera } from './index.js'
 const raycaster = new THREE.Raycaster()
 const pointer = new THREE.Vector2()
 
-function onPointerMove(event) {
-  pointer.x = (event.clientX / window.innerWidth) * 2 - 1
-  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1
-}
+export const getObject = (e, shapes = []) => {
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1
+  pointer.y = -(e.clientY / window.innerHeight) * 2 + 1
 
-window.addEventListener('pointermove', onPointerMove)
-
-export const getObject = (shapes = []) => {
   const meshes = shapes.map((s) => s.mesh)
 
   // update the picking ray with the camera and pointer position

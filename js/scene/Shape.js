@@ -63,8 +63,8 @@ class Shape {
 
   disableControls() {
     this.controlEnabled = false
-    this.modeBinding.dispose()
-    this.destroyButton.dispose()
+    if (this.modeBinding) this.modeBinding.dispose()
+    if (this.destroyButton) this.destroyButton.dispose()
     this.control.detach()
   }
 
