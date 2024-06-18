@@ -31,6 +31,18 @@ const postProcessingFolder = gui.addFolder({
 postProcessingFolder.addBinding(redPass, 'enabled', {
   label: 'show red intensity',
 })
+postProcessingFolder.addBinding(redPass.uniforms.uAlpha, 'value', {
+  label: 'red opacity',
+  min: 0,
+  max: 1,
+  step: 0.0001,
+})
 postProcessingFolder.addBinding(bluePass, 'enabled', {
   label: 'show blue intensity',
+})
+postProcessingFolder.addBinding(bluePass.uniforms.uAlpha, 'value', {
+  label: 'blue opacity',
+  min: 0,
+  max: 1,
+  step: 0.0001,
 })

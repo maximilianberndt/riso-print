@@ -2,7 +2,10 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
 
 const BlueShader = {
   name: 'BlueShader',
-  uniforms: { tDiffuse: { value: null } },
+  uniforms: {
+    tDiffuse: { value: null },
+    uAlpha: { value: 1 },
+  },
   vertexShader: /* glsl */ `
 	varying vec2 vUv;
 
@@ -15,11 +18,15 @@ const BlueShader = {
 
 	varying vec2 vUv;
 
+	uniform float uAlpha;
+
 	void main() {
 		vec3 color = texture2D(tDiffuse, vUv).rgb;
 
 		float red = color.r;
 		float blue = color.b - red;
+
+		blue *= uAlpha;
 
 		gl_FragColor = vec4(blue, blue, blue, 1.0);   
 	}`,

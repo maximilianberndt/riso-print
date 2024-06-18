@@ -2,7 +2,10 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
 
 const RedShader = {
   name: 'RedShader',
-  uniforms: { tDiffuse: { value: null } },
+  uniforms: {
+    tDiffuse: { value: null },
+    uAlpha: { value: 1 },
+  },
   vertexShader: /* glsl */ `
 	varying vec2 vUv;
 
@@ -15,12 +18,15 @@ const RedShader = {
 
 	varying vec2 vUv;
 
+	uniform float uAlpha;
+
 	void main() {
 		vec3 color = texture2D(tDiffuse, vUv).rgb;
 
-			float red = color.r;
+		float red = color.r;
+		red *= uAlpha;
 
-			gl_FragColor = vec4(red, red, red, 1.0);
+		gl_FragColor = vec4(red, red, red, 1.0);
 	}`,
 }
 

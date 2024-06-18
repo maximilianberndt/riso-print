@@ -6,12 +6,28 @@ import createLights from './scene/lights.js'
 import { controls } from './scene/orbitControls.js'
 import { getObject } from './scene/raycaster.js'
 import createPdf from './utils/createPdf.js'
+import {
+  loadFromLocalstorage,
+  saveToLocalstorage,
+} from './utils/localstorage.js'
 
 createLights(scene)
 
-const shapes = [
-  new Shape({ scene, camera, renderer, orbit: controls }),
+const data = loadFromLocalstorage('data') || [
+  { position: [0, 0, 0], scale: [1, 1, 1] },
 ]
+const shapes = data.map(({ position, scale }) => {
+  const shape = new Shape({
+    scene,
+    camera,
+    renderer,
+    orbit: controls,
+  })
+  shape.mesh.position.fromArray(position)
+  shape.mesh.scale.fromArray(scale)
+
+  return shape
+})
 
 gui.addButton({ title: 'Add Sphere', index: 0 }).on('click', () => {
   shapes.forEach((s) => s.disableControls())
@@ -28,6 +44,14 @@ gui.addButton({ title: 'Add Sphere', index: 0 }).on('click', () => {
 })
 
 const folder = gui.addFolder({ title: 'General' })
+folder.addButton({ title: 'Save' }).on('click', () => {
+  const data = shapes.map((s) => ({
+    scale: s.mesh.scale.toArray(),
+    position: s.mesh.position.toArray(),
+  }))
+
+  saveToLocalstorage('data', data)
+})
 folder.addButton({ title: 'Create Pdf' }).on('click', () => {
   createPdf(canvas, composer)
 })

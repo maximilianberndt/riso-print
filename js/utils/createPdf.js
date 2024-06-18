@@ -56,12 +56,12 @@ const createPdf = async (canvas, composer = {}) => {
   bluePass.enabled = false
   await createPage('color-1', canvas)
 
-  // // Show just blue color
-  // redPass.enabled = false
-  // bluePass.enabled = true
-  // await createPage('color-2', canvas, options)
+  // Show just blue color
+  redPass.enabled = false
+  bluePass.enabled = true
+  await createPage('color-2', canvas)
 
-  // bluePass.enabled = false
+  bluePass.enabled = false
 }
 
 export default createPdf

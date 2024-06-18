@@ -31,7 +31,7 @@ const resize = () => {
   camera.aspect = width / height
   camera.updateProjectionMatrix()
 
-  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setPixelRatio(3)
   renderer.setSize(width, height)
   smaaPass.setSize(width, height)
   composer.setSize(width * 4, height * 4)
