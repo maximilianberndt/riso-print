@@ -51,8 +51,13 @@ folder.addButton({ title: 'Save' }).on('click', () => {
   }))
 
   saveToLocalstorage('data', data)
+  saveToLocalstorage('camera', {
+    position: camera.position.toArray(),
+    rotation: camera.quaternion,
+  })
 })
 folder.addButton({ title: 'Create Pdf' }).on('click', () => {
+  shapes.forEach((s) => s.disableControls())
   createPdf(canvas, composer)
 })
 

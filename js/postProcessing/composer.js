@@ -26,7 +26,7 @@ redPass.enabled = false
 bluePass.enabled = false
 
 const postProcessingFolder = gui.addFolder({
-  title: 'post processing',
+  title: 'Preview',
   expanded: false,
 })
 postProcessingFolder.addBinding(redPass, 'enabled', {
