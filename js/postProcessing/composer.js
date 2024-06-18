@@ -27,6 +27,7 @@ bluePass.enabled = false
 
 const postProcessingFolder = gui.addFolder({
   title: 'post processing',
+  expanded: false,
 })
 postProcessingFolder.addBinding(redPass, 'enabled', {
   label: 'show red intensity',
