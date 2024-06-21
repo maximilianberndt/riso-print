@@ -1,8 +1,11 @@
 import gui from "../gui/gui.js"
 import Shape from './Shape.js'
-import { controls } from "../scene/orbitControls.js"
+import { controls } from "../scene/controls.js"
 import { getMesh } from "../scene/raycaster.js"
-import { canvas, scene, renderer, camera } from '../scene/index.js'
+import { scene } from '../scene/scene.js'
+import { canvas } from "../scene/canvas.js"
+import { camera } from "../scene/camera.js"
+import { renderer } from "../scene/renderer.js"
 import { loadFromLocalstorage } from '../utils/localstorage.js'
 
 const data = loadFromLocalstorage('data') || [

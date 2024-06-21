@@ -1,5 +1,5 @@
 import { shapes } from "../shapes/shapes.js"
-import { camera } from "../scene/index.js"
+import { camera } from "../scene/camera.js"
 import { saveToLocalstorage } from "./localstorage.js"
 
 export const save = () => {
