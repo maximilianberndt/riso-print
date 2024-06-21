@@ -1,4 +1,4 @@
-import gui from "../gui.js"
+import gui from "../gui/gui.js"
 import Shape from './Shape.js'
 import { controls } from "../scene/orbitControls.js"
 import { getMesh } from "../scene/raycaster.js"

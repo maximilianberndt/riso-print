@@ -1,4 +1,4 @@
-import gui from './gui.js'
+import gui from './gui/gui.js'
 import { camera, canvas, scene, renderer } from './scene/index.js'
 import createLights from './scene/lights.js'
 import { controls } from './scene/orbitControls.js'
