@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControl'
-import gui from '../gui/gui.js'
+import gui from '../gui.js'
 
 const geometry = new THREE.SphereGeometry(1, 48, 48)
 const material = new THREE.MeshPhysicalMaterial({ color: 0xffffff })

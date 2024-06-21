@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { camera } from './scene.js'
+import { camera } from './index.js'
 
 const raycaster = new THREE.Raycaster()
 const pointer = new THREE.Vector2()

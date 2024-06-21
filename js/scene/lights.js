@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import gui from '../gui/gui.js'
+import gui from '../gui.js'
 import { OPTIONS } from '../options.js'
 
 const ambientLight = new THREE.AmbientLight(OPTIONS.color1, 3.2)
