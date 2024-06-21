@@ -1,17 +1,19 @@
 import { OPTIONS } from '../options.js'
 
-export const fitCanvasToWrapper = (wrapper) => {
-  const bounds = wrapper.getBoundingClientRect()
+const wrapper = document.querySelector('#canvas-wrapper')
 
-  const width = bounds.width
-  const height = width * (OPTIONS.height / OPTIONS.width)
+export const fitCanvasToWrapper = () => {
+	const bounds = wrapper.getBoundingClientRect()
 
-  if (height > window.innerHeight) {
-    const height = bounds.height
-    const width = height * (OPTIONS.width / OPTIONS.height)
+	const width = bounds.width
+	const height = width * (OPTIONS.height / OPTIONS.width)
 
-    return { width, height }
-  }
+	if (height > window.innerHeight) {
+		const height = bounds.height
+		const width = height * (OPTIONS.width / OPTIONS.height)
 
-  return { width, height }
+		return { width, height }
+	}
+
+	return { width, height }
 }
